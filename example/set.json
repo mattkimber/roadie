@@ -7,5 +7,16 @@
     "min_compat_version": 1,
     "filename": "example.nml"
   },
-  "cargo_table": ["COAL","IORE","PASS"]
+  "cargo_table": ["COAL","IORE","PASS"],
+  "sprite_templates": [
+    {
+      "names": ["example_template"],
+      "location_scales": [1],
+      "size_scales": [1],
+      "offset_scales": [0.25],
+      "locations" : [[7,0],[40,0],[80,0],[120,0],[167,0],[200,0],[240,0],[280,0]],
+      "sizes": [[10,26],[26,26],[32,18],[26,26],[10,26],[26,26],[32,18],[26,26]],
+      "offsets": [[-16,-47],[-67,-52],[-75,-56],[-26,-52],[-16,-55],[-66,-52],[-55,-55],[-28,-52]]
+    }
+  ]
 }

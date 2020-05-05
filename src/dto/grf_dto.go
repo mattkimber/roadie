@@ -12,7 +12,7 @@ type GrfDTO struct {
 	Description          string `json:"description"`
 	MinCompatibleVersion int    `json:"min_compat_version"`
 	Filename             string `json:"filename"`
-	Language			 string `json:"language"`
+	Language             string `json:"language"`
 }
 
 func (d *GrfDTO) GetGrf(version int) (g roadie.Grf) {

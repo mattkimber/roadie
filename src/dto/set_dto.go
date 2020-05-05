@@ -9,14 +9,16 @@ import (
 )
 
 type SetDTO struct {
-	GrfDTO        GrfDTO        `json:"grf"`
-	CargoTableDTO CargoTableDTO `json:"cargo_table"`
+	GrfDTO                 GrfDTO                       `json:"grf"`
+	CargoTableDTO          CargoTableDTO                `json:"cargo_table"`
+	TemplatesCollectionDTO SpriteTemplatesCollectionDTO `json:"sprite_templates"`
 }
 
 func (d *SetDTO) GetSet(version int) (s roadie.Set) {
 	s.Filename = d.GrfDTO.Filename
 	s.Grf = d.GrfDTO.GetGrf(version)
 	s.CargoTable = d.CargoTableDTO.GetCargoTable()
+	s.Templates = d.TemplatesCollectionDTO.GetSpriteTemplateList()
 	return
 }
 

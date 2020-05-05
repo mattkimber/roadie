@@ -18,6 +18,6 @@ func testTemplate(t *testing.T, filename string, entity Entity) {
 	}
 
 	if result := output.String(); result != expected {
-		t.Errorf("template output - expected:\n%s\n\ngot:\n%s", expected, result)
+		t.Errorf("template output - expected:\n%s\n---\ngot:\n%s\n---", expected, result)
 	}
 }

@@ -24,6 +24,7 @@ use these conventions.
 And the following optional elements:
 
 * `cargotable`: cargo tables
+* `sprite_templates`: an array of sprite size templates 
 
 Each element is described in detail below.
 
@@ -55,7 +56,7 @@ The `grf` element has the following fields:
 
 ### cargotable
 
-Example
+Example:
 
 ```json
 "cargo_table": ["COAL","IORE","PASS"]
@@ -63,3 +64,71 @@ Example
 
 A cargo table to be defined. This is a string array, and is translated
 directly to the NML output if it is present.
+
+### sprite_templates
+
+Example:
+
+```json
+"sprite_templates": [
+  {
+    "names": ["template"],
+    "location_scales": [1],
+    "size_scales": [1],
+    "offset_scales": [0.25],
+    "locations" : [[7,0],[40,0],[80,0],[120,0],[167,0],[200,0],[240,0],[280,0]],
+    "sizes": [[10,26],[26,26],[32,18],[26,26],[10,26],[26,26],[32,18],[26,26]],
+    "offsets": [[-16,-47],[-67,-52],[-75,-56],[-26,-52],[-16,-55],[-66,-52],[-55,-55],[-28,-52]]
+  }
+]
+```
+
+The way Roadie handles sprite templates is a little complex at first glance, 
+but with this complexity comes a lot of flexibility and the ability to
+quickly adjust things like offsets across multiple zoom levels at once.
+
+`sprite_templates` is an array of individual template block objects, each of
+which are configured by several sub-arrays:
+
+* `names` is the names of the templates this particular template block will product
+* `location_scales` is the list of values to scale the x,y locations within spritesheets by
+* `size_scales` is the list of values to scale the x,y heights within spritesheets by
+* `offset_scales` is the list of values to scale the x,y offsets within spritesheets by
+* `locations`: are the x,y pairs for each sprite in the spritesheet (typically there will be 1, 4 or 8 pairs depending on the type of `.grf`)
+* `sizes`: are the x,y pairs for the height of each sprite
+* `offsets`: are the x,y pairs for the offset of each sprite
+
+The `locations`, `sizes` and `offsets` will be multiplied by the relevant
+scale value when generating the output templates. For example, if you were
+working on a set with 2x and 4x zoom your template declaration might look
+something like this:
+
+```json
+"sprite_templates": [
+  {
+    "names": ["templates_1x", "templates_2x", "templates_4x"],
+    "location_scales": [1,2,4],
+    "size_scales": [1,2,4],
+    "offset_scales": [0.25,0.5,1],
+    "locations" : [[10,15]],
+    "sizes": [[15,15]],
+    "offsets": [[16,-12]]
+  }
+]
+```
+
+Which will produce the following output:
+
+```
+template templates_1x() {
+    [ 10, 15, 15, 15, 4, -3 ]
+}
+
+template templates_2x() {
+    [ 20, 30, 30, 30, 8, -6 ]
+}
+
+template templates_4x() {
+    [ 40, 60, 60, 60, 16, -12 ]
+}
+```

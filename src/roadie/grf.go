@@ -9,7 +9,7 @@ type Grf struct {
 	Identifier                    string
 	Version, MinCompatibleVersion int
 	Params                        string
-	Language					  string
+	Language                      string
 }
 
 func (g Grf) Write(writer io.Writer) (err error) {

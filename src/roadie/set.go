@@ -10,10 +10,11 @@ type Set struct {
 	Filename   string
 	Grf        Grf
 	CargoTable CargoTable
+	Templates  SpriteTemplates
 }
 
 func (s *Set) Write(w io.Writer) (err error) {
-	for _, e := range []Entity{s.Grf, s.CargoTable} {
+	for _, e := range []Entity{s.Grf, s.CargoTable, s.Templates} {
 		if err = e.Write(w); err != nil {
 			return
 		}
