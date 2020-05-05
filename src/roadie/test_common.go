@@ -3,6 +3,7 @@ package roadie
 import (
 	"assets"
 	"bytes"
+	"strings"
 	"testing"
 )
 
@@ -17,7 +18,7 @@ func testTemplate(t *testing.T, filename string, entity Entity) {
 		t.Errorf("could not write template: %v", err)
 	}
 
-	if result := output.String(); result != expected {
+	if result := output.String(); strings.ReplaceAll(result, "\r\n", "\n") != strings.ReplaceAll(expected, "\r\n", "\n") {
 		t.Errorf("template output - expected:\n%s\n---\ngot:\n%s\n---", expected, result)
 	}
 }

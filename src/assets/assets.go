@@ -33,6 +33,11 @@ func Asset(base, path string) ([]byte, string, string, error) {
 	}
 }
 
+// GetSprite_templatesTMPL gets the file /sprite_templates.tmpl from the stored data and returns the data.
+func GetSprite_templatesTMPL() []byte {
+	return _Sprite_templatesTMPL;
+}
+
 // GetCargotableTMPL gets the file /cargotable.tmpl from the stored data and returns the data.
 func GetCargotableTMPL() []byte {
 	return _CargotableTMPL;
@@ -41,9 +46,4 @@ func GetCargotableTMPL() []byte {
 // GetGrfTMPL gets the file /grf.tmpl from the stored data and returns the data.
 func GetGrfTMPL() []byte {
 	return _GrfTMPL;
-}
-
-// GetSprite_templatesTMPL gets the file /sprite_templates.tmpl from the stored data and returns the data.
-func GetSprite_templatesTMPL() []byte {
-	return _Sprite_templatesTMPL;
 }

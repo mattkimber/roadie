@@ -10,5 +10,5 @@ func TestSprites_Write(t *testing.T) {
 		TemplateDirectory: "testdata/input",
 	}
 
-	testTemplate(t, "testdata/output/sprite.nml", sprites)
+	testTemplate(t, "testdata/output/sprite.nml", &sprites)
 }

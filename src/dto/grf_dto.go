@@ -19,6 +19,8 @@ func (d *GrfDTO) GetGrf(version int) (g roadie.Grf) {
 	g.Identifier = fmt.Sprintf("%s\\%02X", d.AuthorId, d.GrfId)
 	g.MinCompatibleVersion = d.MinCompatibleVersion
 	g.Version = version
+	g.Name = d.Name
+	g.Description = d.Description
 
 	if len(d.Language) > 0 {
 		g.Language = d.Language

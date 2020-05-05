@@ -173,3 +173,19 @@ template templates_4x() {
     [ 40, 60, 60, 60, 16, -12 ]
 }
 ```
+
+## Language files
+
+Roadie will output its language file in the `lang` directory, as expected
+by NML. If this directory does not exist it will be created.
+
+Roadie will attempt to write the correct language pragma per
+https://newgrf-specs.tt-wiki.net/wiki/NML:Language_files if you use
+the lowercase name of the language, strip any brackets and replace
+spaces with underscores. In case it cannot identify the language
+it will default to English(GB), 0x01.
+
+It is the business of the future to be dangerous. It is *not* the business
+of Roadie to handle multiple translations. Roadie will output a single 
+strings file in the language of your choice, but you will need to create 
+your own translations manually.

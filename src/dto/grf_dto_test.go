@@ -12,6 +12,8 @@ func TestGrfDTO_GetGrf(t *testing.T) {
 		Version:              3,
 		MinCompatibleVersion: 2,
 		Language:             "english",
+		Name:                 "Test Name",
+		Description:          "Test Description",
 	}
 
 	dto := GrfDTO{

@@ -14,11 +14,12 @@ import (
 type TemplateMap map[string]*template.Template
 
 type Sprites struct {
-	Table             string
-	TemplateDirectory string
+	Table              string
+	TemplateDirectory  string
+	EncounteredStrings []LanguageString
 }
 
-func (s Sprites) Write(w io.Writer) (err error) {
+func (s *Sprites) Write(w io.Writer) (err error) {
 	data, err := getDataFromCsvFile(s)
 	if err != nil {
 		return
@@ -29,8 +30,9 @@ func (s Sprites) Write(w io.Writer) (err error) {
 		return
 	}
 
+	s.EncounteredStrings = make([]LanguageString, 0, len(data)-1)
 	for _, d := range data[1:] {
-		if err = processDataLine(w, d, fields, templates, s.TemplateDirectory); err != nil {
+		if err = processDataLine(w, d, fields, templates, s); err != nil {
 			return
 		}
 	}
@@ -38,17 +40,22 @@ func (s Sprites) Write(w io.Writer) (err error) {
 	return
 }
 
-func processDataLine(w io.Writer, dataLine []string, fields []string, templates TemplateMap, templateDir string) (err error) {
+func processDataLine(w io.Writer, dataLine []string, fields []string, templates TemplateMap, s *Sprites) (err error) {
 	templateData := make(map[string]string)
 
 	for i, f := range dataLine {
 		templateData[fields[i]] = f
 	}
 
-	templateData["name_string"] = "string(STR_NAME_" + strings.ToUpper(templateData["id"]) + ")"
-	templateName := templateData["template"]
+	str := LanguageString{Name: "STR_NAME_" + strings.ToUpper(templateData["id"]), Value: templateData["name"]}
+	s.EncounteredStrings = append(s.EncounteredStrings, str)
 
-	if err = ensureTemplate(templates, templateName, templateDir+"/"+templateName+".tmpl"); err != nil {
+	templateData["name_string"] = "string(" + str.Name + ")"
+
+	templateName := templateData["template"]
+	templateFile := s.TemplateDirectory + "/" + templateName + ".tmpl"
+
+	if err = ensureTemplate(templates, templateName, templateFile); err != nil {
 		return
 	}
 
@@ -73,7 +80,7 @@ func getFields(data [][]string) (fields []string, templates TemplateMap, err err
 	fields = make([]string, len(data[0]))
 	templates = make(TemplateMap)
 
-	var templateFound, idFound bool
+	var templateFound, idFound, nameFound bool
 
 	for i, f := range data[0] {
 		fields[i] = f
@@ -85,17 +92,20 @@ func getFields(data [][]string) (fields []string, templates TemplateMap, err err
 			idFound = true
 		}
 
+		if fields[i] == "name" {
+			nameFound = true
+		}
 	}
 
-	if !templateFound || !idFound {
-		err = fmt.Errorf("no template and id column in csv file")
+	if !templateFound || !idFound || !nameFound {
+		err = fmt.Errorf("did not find template, name and id columns in csv file")
 		return
 	}
 
 	return
 }
 
-func getDataFromCsvFile(s Sprites) (data [][]string, err error) {
+func getDataFromCsvFile(s *Sprites) (data [][]string, err error) {
 	csvFile, err := os.Open(s.Table)
 	defer csvFile.Close()
 	if err != nil {

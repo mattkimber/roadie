@@ -3,3 +3,6 @@
 *.prof
 example.nml
 *.swp
+*.grf
+.nmlcache
+lang/
