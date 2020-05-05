@@ -1,0 +1,37 @@
+grf {
+  grfid:                  "{{.Identifier}}";
+  name:                   string(STR_GRF_NAME);
+  desc:                   string(STR_GRF_DESCRIPTION);
+  version:                {{.Version}};
+  min_compatible_version: {{.MinCompatibleVersion}};
+{{if ne .Params "" }}
+  param 0 {
+    param_speed_limiters {
+      name: string(STR_PARAM_SPEED_LIMITERS);
+      desc: string(STR_PARAM_SPEED_LIMITERS_DESC);
+      type: bool;
+      def_value: 0;
+    }
+  }
+  param 1 {
+    param_build_costs {
+      type: int;
+      name: string(STR_PARAM_BUILD_COSTS);
+      desc: string(STR_PARAM_BUILD_COSTS_DESC);
+      min_value: 0;
+		  max_value: 7;
+		  def_value: 2;
+      names: {
+			  0: string(STR_PARAM_COSTS_1);
+			  1: string(STR_PARAM_COSTS_2);
+			  2: string(STR_PARAM_COSTS_3);
+			  3: string(STR_PARAM_COSTS_4);
+			  4: string(STR_PARAM_COSTS_5);
+			  5: string(STR_PARAM_COSTS_6);
+			  6: string(STR_PARAM_COSTS_7);
+			  7: string(STR_PARAM_COSTS_8);
+		  };
+    }
+  }
+{{end}}}
+

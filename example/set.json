@@ -1,0 +1,11 @@
+{
+  "grf": {
+    "author_id": "RDE",
+    "grf_id": 1,
+    "name": "Roadie Example Vehicle Set",
+    "description": "A set demonstrating the basic features of Roadie",
+    "min_compat_version": 1,
+    "filename": "example.nml"
+  },
+  "cargo_table": ["COAL","IORE","PASS"]
+}

@@ -1,0 +1,5 @@
+.idea
+*.exe
+*.prof
+example.nml
+*.swp
