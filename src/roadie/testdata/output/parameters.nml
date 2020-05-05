@@ -1,0 +1,25 @@
+param 0 {
+    param_param_a {
+        name: string(STR_PARAM_PARAM_A);
+        desc: string(STR_PARAM_PARAM_A_DESCRIPTION);
+        type: int;
+        min_value: 0;
+        max_value: 2;
+        def_value: 1;
+        names: {
+              0: string(STR_PARAM_PARAM_A_VALUE_0);
+              1: string(STR_PARAM_PARAM_A_VALUE_1);
+              2: string(STR_PARAM_PARAM_A_VALUE_2);
+        };
+    }
+}
+
+param 1 {
+    param_param_b {
+        name: string(STR_PARAM_PARAM_B);
+        desc: string(STR_PARAM_PARAM_B_DESCRIPTION);
+        type: bool;
+        def_value: 0;
+    }
+}
+

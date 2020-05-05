@@ -5,7 +5,19 @@
     "name": "Roadie Example Vehicle Set",
     "description": "A set demonstrating the basic features of Roadie",
     "min_compat_version": 1,
-    "filename": "example.nml"
+    "filename": "example.nml",
+    "parameters": [
+      {
+        "id": "example",
+        "name": "Example Behaviour",
+        "desc":  "Set an example behaviour somehow",
+        "type": "int",
+        "default_value": 1,
+        "min_value": 0,
+        "max_value": 2,
+        "value_names": [ "Low", "Medium", "High" ]
+      }
+    ]
   },
   "cargo_table": ["COAL","IORE","PASS"],
   "sprite_templates": [

@@ -2,13 +2,15 @@ package roadie
 
 import (
 	"assets"
+	"bytes"
 	"io"
 )
 
 type Grf struct {
 	Identifier                    string
 	Version, MinCompatibleVersion int
-	Params                        string
+	Parameters                    Parameters
+	ParameterData                 string
 	Language                      string
 	Name, Description             string
 }
@@ -19,6 +21,13 @@ func (g Grf) Write(writer io.Writer) (err error) {
 	if err != nil {
 		return
 	}
+
+	var buf bytes.Buffer
+	if err = g.Parameters.Write(&buf); err != nil {
+		return
+	}
+
+	g.ParameterData = buf.String()
 
 	err = t.Execute(writer, g)
 	return

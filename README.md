@@ -41,7 +41,8 @@ Example:
     "description": "A set demonstrating the basic features of Roadie",
     "min_compat_version": 1,
     "filename": "example.nml",
-    "language": "english"
+    "language": "english", 
+    "parameters": []
 }
 ```
 
@@ -54,6 +55,39 @@ The `grf` element has the following fields:
 * `min_compat_version`: the earliest version of the set this instance of the set is compatible with
 * `filename`: the output NML filename to produce
 * `language`: the language in which to output string tables. Defaults to `english` if not set.
+* `parameters`: any parameters this grf will define
+
+### parameters
+
+Example:
+
+```json
+"parameters": [
+  {
+    "id": "example",
+    "name": "Example Behaviour",
+    "desc":  "Set an example behaviour somehow",
+    "type": "int",
+    "def_value": 1,
+    "min_value": 0,
+    "max_value": 2,
+    "names": [ "Low", "Medium", "High" ]
+  }
+]
+```
+
+The `parameters` element has the following fields, closely following the
+NML specification:
+
+* `id`: a short identifier for this parameter
+* `name`: the name of this parameter
+* `desc`: a description of this parameter
+* `type`: type of parameter, `int` or `bool`
+* `default_value`: default value
+* `min_value`: minimum value (`int` parameters only)
+* `max_value`: maximum value (`int` parameters only)
+* `value_names`: if this is set the numerical values will be overridden by the selected names. The length of this array should be (`max_value` - `min_value`).
+
 
 ### sprites
 

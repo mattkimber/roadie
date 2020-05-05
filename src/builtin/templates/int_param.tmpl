@@ -1,0 +1,14 @@
+param {{.Index}} {
+    param_{{.Id}} {
+        name: string({{$ns := .NameString}}{{$ns}});
+        desc: string({{.DescriptionString}});
+        type: int;
+        min_value: {{$mv := .MinValue}}{{$mv}};
+        max_value: {{.MaxValue}};
+        def_value: {{.DefaultValue}};{{if .ValueNames}}
+        names: {
+        {{range $index, $name := .ValueNames}}      {{$index}}: string({{$ns}}_VALUE_{{$index}});
+        {{end}}};{{end}}
+    }
+}
+
