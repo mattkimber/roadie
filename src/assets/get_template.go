@@ -4,12 +4,13 @@ import (
 	"bufio"
 	"bytes"
 	"compress/gzip"
+	"fmt"
 	"io/ioutil"
 	"os"
 	"text/template"
 )
 
-func GetTemplate(name string, data []byte) (t *template.Template, err error) {
+func GetInternalTemplate(name string, data []byte) (t *template.Template, err error) {
 	rd, err := gzip.NewReader(bytes.NewReader(data))
 	if err != nil {
 		return
@@ -20,7 +21,23 @@ func GetTemplate(name string, data []byte) (t *template.Template, err error) {
 		return
 	}
 
-	return template.New("grf").Parse(string(tdata))
+	return template.New(name).Parse(string(tdata))
+}
+
+func GetExternalTemplate(name string, filename string) (t *template.Template, err error) {
+	f, err := os.Open(filename)
+	if err != nil {
+		err = fmt.Errorf("could not open %s: %v", filename, err)
+		return
+	}
+	defer f.Close()
+
+	data, err := ioutil.ReadAll(bufio.NewReader(f))
+	if err != nil {
+		return
+	}
+
+	return template.New(name).Parse(string(data))
 }
 
 func GetInput(filename string) (output string, err error) {

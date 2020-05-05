@@ -14,7 +14,7 @@ func (c CargoTable) Write(writer io.Writer) (err error) {
 		return
 	}
 
-	t, err := assets.GetTemplate("cargoTable", assets.GetCargotableTMPL())
+	t, err := assets.GetInternalTemplate("cargoTable", assets.GetCargotableTMPL())
 
 	if err != nil {
 		return

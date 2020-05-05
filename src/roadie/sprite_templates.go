@@ -21,7 +21,7 @@ type SpriteTemplates struct {
 }
 
 func (s SpriteTemplates) Write(writer io.Writer) (err error) {
-	t, err := assets.GetTemplate("spriteTemplates", assets.GetSprite_templatesTMPL())
+	t, err := assets.GetInternalTemplate("spriteTemplates", assets.GetSprite_templatesTMPL())
 
 	if err != nil {
 		return

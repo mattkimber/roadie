@@ -23,6 +23,7 @@ use these conventions.
 
 And the following optional elements:
 
+* `sprites`: information about sprites
 * `cargotable`: cargo tables
 * `sprite_templates`: an array of sprite size templates 
 
@@ -53,6 +54,46 @@ The `grf` element has the following fields:
 * `min_compat_version`: the earliest version of the set this instance of the set is compatible with
 * `filename`: the output NML filename to produce
 * `language`: the language in which to output string tables. Defaults to `english` if not set.
+
+### sprites
+
+Example:
+
+```json
+"sprites": {
+  "table": "example/table.csv",
+  "template_directory": "example/templates"
+}
+```
+
+The `sprites` element controls how to turn a `.csv` tracking table into NML
+sprites. This is done by specifying a tracking table and a directory for
+templates.
+
+Under the hood this is a thin layer on top of the Golang templating system,
+and templates are standard Go template files. Each column from the tracking
+table will be passed as a Go map, allowing for an almost unlimited variety
+of sprite handling options (at the cost of needing to write potentially
+complex templates).
+
+`sprites` has the following elements:
+
+* `table`: the path to the tracking table (defaults to `table.csv`)
+* `template_directory`: the root path in which templates can be found (defaults to the current path)
+
+A tracking table must have the following **mandatory** fields:
+
+* `name`: name of sprite, used for populating language files
+* `id`: a unique identifier which is used when creating various resources
+* `template`: the name of the template to use. This will automatically be prepended by the template directory and appended by `.tmpl`
+
+As Roadie devolves all other responsibilities to the templates, no other
+fields are mandatory. However some additional map fields will be generated
+and passed to the template to make life easier:
+
+* `name_string`: the `string(STR_NAME)` reference to the name in the language file
+
+Note: it is a good idea to leave some trailing newlines in your templates.
 
 ### cargotable
 

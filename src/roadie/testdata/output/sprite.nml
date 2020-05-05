@@ -1,0 +1,9 @@
+template a {
+  id: item_a
+  name: Item A
+  string: string(STR_NAME_ITEM_A)
+}
+
+template b {
+    name: Item B
+}

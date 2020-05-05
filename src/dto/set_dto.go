@@ -12,6 +12,7 @@ type SetDTO struct {
 	GrfDTO                 GrfDTO                       `json:"grf"`
 	CargoTableDTO          CargoTableDTO                `json:"cargo_table"`
 	TemplatesCollectionDTO SpriteTemplatesCollectionDTO `json:"sprite_templates"`
+	SpritesDTO             SpritesDTO                   `json:"sprites"`
 }
 
 func (d *SetDTO) GetSet(version int) (s roadie.Set) {
@@ -19,6 +20,7 @@ func (d *SetDTO) GetSet(version int) (s roadie.Set) {
 	s.Grf = d.GrfDTO.GetGrf(version)
 	s.CargoTable = d.CargoTableDTO.GetCargoTable()
 	s.Templates = d.TemplatesCollectionDTO.GetSpriteTemplateList()
+	s.Sprites = d.SpritesDTO.GetSprites()
 	return
 }
 

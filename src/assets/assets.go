@@ -22,12 +22,12 @@ var _Sprite_templatesTMPL = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x02\xff\x64
 // it is not found
 func Asset(base, path string) ([]byte, string, string, error) {
 	switch path {
+	case "/cargotable.tmpl":
+		return _CargotableTMPL, "e9fac079b6234a9c1c12ef34c019a507", "", nil
 	case "/grf.tmpl":
 		return _GrfTMPL, "27c39681a8c12826d0d958a9f39237af", "", nil
 	case "/sprite_templates.tmpl":
 		return _Sprite_templatesTMPL, "68d6a979b6ffc0e6457f7fdc496d09a3", "", nil
-	case "/cargotable.tmpl":
-		return _CargotableTMPL, "e9fac079b6234a9c1c12ef34c019a507", "", nil
 	default:
 		return nil, "", "", ErrAssetFileNotFound
 	}
