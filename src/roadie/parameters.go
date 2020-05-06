@@ -2,6 +2,7 @@ package roadie
 
 import (
 	"assets"
+	"fmt"
 	"io"
 	"text/template"
 )
@@ -24,6 +25,10 @@ type Parameters []Parameter
 
 func (p *Parameter) Write(writer io.Writer) (err error) {
 	var t *template.Template
+
+	if len(p.ValueNames) > 0 && (p.MinValue != 0 || (p.MaxValue-p.MinValue)+1 > len(p.ValueNames)) {
+		return fmt.Errorf("value name mapping is not consistent: min value is %d (must be 0) and there are %d names for %d values", p.MinValue, len(p.ValueNames), (p.MaxValue-p.MinValue)+1)
+	}
 
 	if p.Type == "int" {
 		t, err = assets.GetInternalTemplate("intParam", assets.GetInt_paramTMPL())

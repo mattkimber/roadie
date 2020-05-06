@@ -2,6 +2,7 @@ package roadie
 
 import (
 	"bufio"
+	"fmt"
 	"io"
 	"os"
 )
@@ -22,17 +23,24 @@ func (s *Set) Write(w io.Writer) (err error) {
 		}
 	}
 
+	return
+}
+
+func getStrings(s *Set) {
 	s.LanguageData.Language = s.Grf.Language
 	s.LanguageData.Data = make([]LanguageString, 0, 2)
 	s.LanguageData.Data = append(s.LanguageData.Data, LanguageString{Name: "STR_GRF_NAME", Value: s.Grf.Name})
 	s.LanguageData.Data = append(s.LanguageData.Data, LanguageString{Name: "STR_GRF_DESCRIPTION", Value: s.Grf.Description})
+
+	for _, p := range s.Grf.Parameters {
+		s.LanguageData.Data = append(s.LanguageData.Data, LanguageString{Name: p.NameString, Value: p.Name})
+		s.LanguageData.Data = append(s.LanguageData.Data, LanguageString{Name: p.DescriptionString, Value: p.Description})
+		for i, v := range p.ValueNames {
+			s.LanguageData.Data = append(s.LanguageData.Data, LanguageString{Name: fmt.Sprintf("%s_VALUE_%d", p.NameString, i), Value: v})
+		}
+	}
+
 	s.LanguageData.Data = append(s.LanguageData.Data, s.Sprites.EncounteredStrings...)
-
-	return
-}
-
-func (s *Set) getTotalStrings() int {
-	return len(s.Sprites.EncounteredStrings) + 2
 }
 
 func (s *Set) Create() (err error) {
@@ -45,6 +53,8 @@ func (s *Set) Create() (err error) {
 			panic(err)
 		}
 	}
+
+	getStrings(s)
 
 	if err = writeToFile("lang/"+s.Grf.Language+".lng", s.LanguageData.Write); err != nil {
 		return
