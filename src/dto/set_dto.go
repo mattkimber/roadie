@@ -13,6 +13,7 @@ type SetDTO struct {
 	CargoTableDTO          CargoTableDTO                `json:"cargo_table"`
 	TemplatesCollectionDTO SpriteTemplatesCollectionDTO `json:"sprite_templates"`
 	SpritesDTO             SpritesDTO                   `json:"sprites"`
+	StaticTemplatesDTO     StaticTemplatesDTO           `json:"static_templates"`
 }
 
 func (d *SetDTO) GetSet(version int) (s roadie.Set) {
@@ -21,6 +22,7 @@ func (d *SetDTO) GetSet(version int) (s roadie.Set) {
 	s.CargoTable = d.CargoTableDTO.GetCargoTable()
 	s.Templates = d.TemplatesCollectionDTO.GetSpriteTemplateList()
 	s.Sprites = d.SpritesDTO.GetSprites()
+	s.StaticTemplates = d.StaticTemplatesDTO.GetStaticTemplates()
 	return
 }
 

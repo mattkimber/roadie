@@ -26,6 +26,7 @@ And the following optional elements:
 * `sprites`: information about sprites
 * `cargotable`: cargo tables
 * `sprite_templates`: an array of sprite size templates 
+* `static_templates`: templates to process that are not related to sprites
 
 Each element is described in detail below.
 
@@ -86,7 +87,7 @@ NML specification:
 * `default_value`: default value
 * `min_value`: minimum value (`int` parameters only)
 * `max_value`: maximum value (`int` parameters only)
-* `value_names`: if this is set the numerical values will be overridden by the selected names. The length of this array should be (`max_value` - `min_value`).
+* `value_names`: if this is set the numerical values will be overridden by the selected names. The length of this array should be (`max_value` - `min_value`), and `min_value` must be 0 when this is used.
 
 
 ### sprites
@@ -122,7 +123,7 @@ A tracking table must have the following **mandatory** fields:
 * `template`: the name of the template to use. This will automatically be prepended by the template directory and appended by `.tmpl`
 
 As Roadie devolves all other responsibilities to the templates, no other
-fields are mandatory. However some additional map fields will be generated
+fields are mandatory. However, some additional map fields will be generated
 and passed to the template to make life easier:
 
 * `name_string`: the `string(STR_NAME)` reference to the name in the language file
@@ -206,6 +207,54 @@ template templates_2x() {
 template templates_4x() {
     [ 40, 60, 60, 60, 16, -12 ]
 }
+```
+
+### static_templates
+
+Example:
+
+```json
+"static_templates": [
+  {
+    "template":  "example/comment.tmpl"
+  },
+  {
+    "template":  "example/disable_items.tmpl",
+    "data" : {
+      "Feature": "FEAT_ROADVEHS",
+      "Start": "0",
+      "End": "254"
+  }
+}
+],
+```
+
+Static templates allow you to produce elements that are not related to
+sprites and not covered by any of the core Roadie functionality - for
+example, adjusting `basecosts` or including a `disable_item` block.
+
+Data from the `data` block will be passed to the template. All items in
+the map must be strings, even if they represent integer data in the final
+`.nml` file.
+
+Template names do not auto-resolve as with sprites; you can put any path 
+and extension here.
+
+Given the following templates: 
+
+```text
+// example/comment.tmpl
+/* Example of a custom template used to output a string */
+
+// example/disable_items.tmpl
+disable_item({{.Feature}}, {{.Start}}, {{.End}});
+```
+
+The above example will produce the following output:
+
+```text
+/* Example of a custom template used to output a string */
+disable_item(FEAT_ROADVEHS, 0, 254);
 ```
 
 ## Language files

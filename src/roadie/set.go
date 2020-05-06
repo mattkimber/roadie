@@ -8,16 +8,17 @@ import (
 )
 
 type Set struct {
-	Filename     string
-	Grf          Grf
-	CargoTable   CargoTable
-	Templates    SpriteTemplates
-	Sprites      Sprites
-	LanguageData Strings
+	Filename        string
+	Grf             Grf
+	CargoTable      CargoTable
+	StaticTemplates StaticTemplates
+	Templates       SpriteTemplates
+	Sprites         Sprites
+	LanguageData    Strings
 }
 
 func (s *Set) Write(w io.Writer) (err error) {
-	for _, e := range []Entity{s.Grf, s.CargoTable, s.Templates, &s.Sprites} {
+	for _, e := range []Entity{s.Grf, s.CargoTable, s.Templates, &s.StaticTemplates, &s.Sprites} {
 		if err = e.Write(w); err != nil {
 			return
 		}

@@ -20,6 +20,19 @@
     ]
   },
   "cargo_table": ["COAL","IORE","PASS"],
+  "static_templates": [
+    {
+      "template":  "example/templates/comment.tmpl"
+    },
+    {
+      "template":  "example/templates/disable_items.tmpl",
+      "data" : {
+        "Feature": "FEAT_ROADVEHS",
+        "Start": "0",
+        "End": "254"
+      }
+    }
+  ],
   "sprite_templates": [
     {
       "names": ["example_template"],
