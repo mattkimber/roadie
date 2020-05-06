@@ -46,6 +46,8 @@
   ],
   "sprites": {
     "table": "example/table.csv",
-    "template_directory": "example/templates"
+    "template_directory": "example/templates",
+    "additional_text_field": "text",
+    "additional_text_format": "{SILVER}%s"
   }
 }

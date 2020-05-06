@@ -97,7 +97,9 @@ Example:
 ```json
 "sprites": {
   "table": "example/table.csv",
-  "template_directory": "example/templates"
+  "template_directory": "example/templates",
+  "additional_text_field": "text",
+  "additional_text_format": "Usage: %s"
 }
 ```
 
@@ -115,6 +117,8 @@ complex templates).
 
 * `table`: the path to the tracking table (defaults to `table.csv`)
 * `template_directory`: the root path in which templates can be found (defaults to the current path)
+* `additional_text_field`: if specified, a field in the .csv which contains additional text (e.g. historical details or usage hints) for the sprite
+* `additional_text_format`: if specified, a format string for additional text - useful for format elements which are consistent across all sprites. If this does not contain a `%s` string location character, one will be appended.
 
 A tracking table must have the following **mandatory** fields:
 
@@ -127,6 +131,7 @@ fields are mandatory. However, some additional map fields will be generated
 and passed to the template to make life easier:
 
 * `name_string`: the `string(STR_NAME)` reference to the name in the language file
+* `additional_text_string`: the `string(STR_ADDITIONAL_TEXT)` reference to the additional text in the language file
 
 Note: it is a good idea to leave some trailing newlines in your templates.
 

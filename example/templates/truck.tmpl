@@ -47,6 +47,7 @@ item(FEAT_ROADVEHS, {{.id}}, {{.numeric_id}}) {
         default: spriteset_{{.id}};
         COAL: spritegroup_{{.id}}_coal;
         IORE: spritegroup_{{.id}}_ore;
+        additional_text: return {{.additional_text_string}};
     }
 }
 

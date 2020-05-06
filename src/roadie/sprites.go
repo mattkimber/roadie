@@ -14,9 +14,11 @@ import (
 type TemplateMap map[string]*template.Template
 
 type Sprites struct {
-	Table              string
-	TemplateDirectory  string
-	EncounteredStrings []LanguageString
+	Table                string
+	TemplateDirectory    string
+	EncounteredStrings   []LanguageString
+	AdditionalTextField  string
+	AdditionalTextFormat string
 }
 
 func (s *Sprites) Write(w io.Writer) (err error) {
@@ -25,7 +27,7 @@ func (s *Sprites) Write(w io.Writer) (err error) {
 		return
 	}
 
-	fields, templates, err := getFields(data)
+	fields, templates, err := getFields(data, s.AdditionalTextField)
 	if err != nil {
 		return
 	}
@@ -51,6 +53,15 @@ func processDataLine(w io.Writer, dataLine []string, fields []string, templates 
 	s.EncounteredStrings = append(s.EncounteredStrings, str)
 
 	templateData["name_string"] = "string(" + str.Name + ")"
+	if len(s.AdditionalTextField) > 0 {
+		additional := LanguageString{
+			Name:  "STR_NAME_" + strings.ToUpper(s.AdditionalTextField) + "_" + strings.ToUpper(templateData["id"]),
+			Value: fmt.Sprintf(s.AdditionalTextFormat, templateData[s.AdditionalTextField]),
+		}
+		s.EncounteredStrings = append(s.EncounteredStrings, additional)
+
+		templateData["additional_text_string"] = "string(" + additional.Name + ")"
+	}
 
 	templateName := templateData["template"]
 	templateFile := s.TemplateDirectory + "/" + templateName + ".tmpl"
@@ -76,11 +87,11 @@ func ensureTemplate(templates TemplateMap, templateName string, filename string)
 	return nil
 }
 
-func getFields(data [][]string) (fields []string, templates TemplateMap, err error) {
+func getFields(data [][]string, textField string) (fields []string, templates TemplateMap, err error) {
 	fields = make([]string, len(data[0]))
 	templates = make(TemplateMap)
 
-	var templateFound, idFound, nameFound bool
+	var templateFound, idFound, nameFound, textFieldFound bool
 
 	for i, f := range data[0] {
 		fields[i] = f
@@ -95,11 +106,19 @@ func getFields(data [][]string) (fields []string, templates TemplateMap, err err
 		if fields[i] == "name" {
 			nameFound = true
 		}
+
+		if fields[i] == textField {
+			textFieldFound = true
+		}
 	}
 
 	if !templateFound || !idFound || !nameFound {
 		err = fmt.Errorf("did not find template, name and id columns in csv file")
 		return
+	}
+
+	if len(textField) > 0 && !textFieldFound {
+		err = fmt.Errorf("additional text field %s specified but not found in csv file", textField)
 	}
 
 	return

@@ -8,12 +8,15 @@ import (
 
 func TestSpriteDTO_GetSprites(t *testing.T) {
 	expected := roadie.Sprites{
-		Table:             "table.csv",
-		TemplateDirectory: "output",
+		Table:                "table.csv",
+		TemplateDirectory:    "output",
+		AdditionalTextField:  "text",
+		AdditionalTextFormat: "%s",
 	}
 
 	dto := SpritesDTO{
-		TemplateDirectory: "output",
+		TemplateDirectory:   "output",
+		AdditionalTextField: "text",
 	}
 
 	if result := dto.GetSprites(); !reflect.DeepEqual(expected, result) {
