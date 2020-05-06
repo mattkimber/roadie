@@ -27,8 +27,13 @@ func AlternativeSprites(sprite, template string, zoom int) string {
 	return buf.String()
 }
 
+func Concat(a, b string) string {
+	return a + b
+}
+
 func Map() template.FuncMap {
 	return template.FuncMap{
 		"altsprites": AlternativeSprites,
+		"concat":     Concat,
 	}
 }

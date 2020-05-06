@@ -31,6 +31,8 @@ var _Sprite_templatesTMPL = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x02\xff\x64
 // it is not found
 func Asset(base, path string) ([]byte, string, string, error) {
 	switch path {
+	case "/grf.tmpl":
+		return _GrfTMPL, "b17f968385a2a5d495ad0e75a818213b", "", nil
 	case "/int_param.tmpl":
 		return _Int_paramTMPL, "161f589e580c146749a7f0d8f64a8e04", "", nil
 	case "/sprite_templates.tmpl":
@@ -41,11 +43,14 @@ func Asset(base, path string) ([]byte, string, string, error) {
 		return _Bool_paramTMPL, "9ae561741f016e8333e8c3356ddaf514", "", nil
 	case "/cargotable.tmpl":
 		return _CargotableTMPL, "e9fac079b6234a9c1c12ef34c019a507", "", nil
-	case "/grf.tmpl":
-		return _GrfTMPL, "b17f968385a2a5d495ad0e75a818213b", "", nil
 	default:
 		return nil, "", "", ErrAssetFileNotFound
 	}
+}
+
+// GetSprite_templatesTMPL gets the file /sprite_templates.tmpl from the stored data and returns the data.
+func GetSprite_templatesTMPL() []byte {
+	return _Sprite_templatesTMPL
 }
 
 // GetAlternative_spritesTMPL gets the file /alternative_sprites.tmpl from the stored data and returns the data.
@@ -71,9 +76,4 @@ func GetGrfTMPL() []byte {
 // GetInt_paramTMPL gets the file /int_param.tmpl from the stored data and returns the data.
 func GetInt_paramTMPL() []byte {
 	return _Int_paramTMPL
-}
-
-// GetSprite_templatesTMPL gets the file /sprite_templates.tmpl from the stored data and returns the data.
-func GetSprite_templatesTMPL() []byte {
-	return _Sprite_templatesTMPL
 }
