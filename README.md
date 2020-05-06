@@ -15,6 +15,12 @@ You will need the following prerequisites to create an NML file:
 The files don't have to be named exactly that, but all examples will
 use these conventions.
 
+## Usage
+
+To process the set JSON file `set.json`:
+
+`roadie set.json`
+
 ## set.json
 
 `set.json` contains the following mandatory elements:
@@ -277,3 +283,26 @@ It is the business of the future to be dangerous. It is *not* the business
 of Roadie to handle multiple translations. Roadie will output a single 
 strings file in the language of your choice, but you will need to create 
 your own translations manually.
+
+## Versioning
+
+Roadie can handle versioning of the NML output files in one of two ways:
+
+* Auto-incrementing using a `.roadie_version` file
+* Via command line flag
+
+If the command line flag `-version` (`-v` for short) is passed thusly:
+
+```text
+roadie -version 23 set.json
+```
+
+Then the version in the output file will be set to 23. This is useful
+for integration in automated pipelines where you want a consistent version
+number across multiple files, including those which Roadie is unaware of.
+
+If no command line flag is passed, then Roadie will track the current
+version by creating a `.roadie_version` file (if it does not already
+exist) and incrementing it each time Roadie runs. If you are converting
+an existing set to Roadie it is possible to edit this file manually
+to set the starting point.

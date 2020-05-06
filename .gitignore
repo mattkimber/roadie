@@ -6,3 +6,4 @@ example.nml
 *.grf
 .nmlcache
 lang/
+.roadie_version
