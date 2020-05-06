@@ -54,7 +54,7 @@ func processDataLine(w io.Writer, dataLine []string, fields []string, templates 
 	s.EncounteredStrings = append(s.EncounteredStrings, str)
 
 	templateData["name_string"] = "string(" + str.Name + ")"
-	if len(s.AdditionalTextField) > 0 {
+	if len(s.AdditionalTextField) > 0 && len(templateData[s.AdditionalTextField]) > 0 {
 		additional := LanguageString{
 			Name:  "STR_NAME_" + strings.ToUpper(s.AdditionalTextField) + "_" + strings.ToUpper(templateData["id"]),
 			Value: fmt.Sprintf(s.AdditionalTextFormat, templateData[s.AdditionalTextField]),
