@@ -4,6 +4,7 @@ import (
 	"assets"
 	"bytes"
 	"fmt"
+	"strconv"
 	"text/template"
 )
 
@@ -31,9 +32,18 @@ func Concat(a, b string) string {
 	return a + b
 }
 
+func ParseInt(input string) int {
+	if i, err := strconv.Atoi(input); err != nil {
+		return -1
+	} else {
+		return i
+	}
+}
+
 func Map() template.FuncMap {
 	return template.FuncMap{
 		"altsprites": AlternativeSprites,
 		"concat":     Concat,
+		"parseint":   ParseInt,
 	}
 }

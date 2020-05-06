@@ -50,3 +50,22 @@ func TestConcat(t *testing.T) {
 		})
 	}
 }
+
+func TestParseInt(t *testing.T) {
+	testCases := []struct {
+		name     string
+		input    string
+		expected int
+	}{
+		{"valid", "1", 1},
+		{"negative", "-33", -33},
+		{"invalid", "foo", -1},
+	}
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			if got := ParseInt(tc.input); got != tc.expected {
+				t.Errorf("ParseInt() = %v, expected %v", got, tc.expected)
+			}
+		})
+	}
+}

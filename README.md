@@ -278,6 +278,7 @@ The following built-in template functions are offered:
 
 * `altsprites`
 * `concat`
+* `parseint`
 
 These are described below.
 
@@ -317,12 +318,26 @@ alternative_sprites(spriteset_bus, ZOOM_LEVEL_IN_2X, BIT_DEPTH_32BPP, "2x/bus_32
 
 ### concat
 
+Example:
+
 ```text
 {{ concat "foo" "bar" }}
 ```
 
 This is a simple function to concatenate two strings. The above will
 output the single string `foobar`.
+
+### parseint
+
+Example:
+
+```text
+{{$intro_yr := parseint .intro_year}}{{if le $intro_yr 1920 -}}
+```
+
+This is a simple function to parse a value from the map as an integer
+for use with comparison functions
+
 
 ## Language files
 
