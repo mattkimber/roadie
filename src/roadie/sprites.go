@@ -6,6 +6,7 @@ import (
 	"encoding/csv"
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"strings"
 	"text/template"
@@ -94,7 +95,8 @@ func getFields(data [][]string, textField string) (fields []string, templates Te
 	var templateFound, idFound, nameFound, textFieldFound bool
 
 	for i, f := range data[0] {
-		fields[i] = f
+		// CSVs found in the wild may have BOM in the header line
+		fields[i] = strings.Trim(f, " \xEF\xBB\xBF")
 		if fields[i] == "template" {
 			templateFound = true
 		}
@@ -113,6 +115,7 @@ func getFields(data [][]string, textField string) (fields []string, templates Te
 	}
 
 	if !templateFound || !idFound || !nameFound {
+		log.Printf("CSV headers: %v", fields)
 		err = fmt.Errorf("did not find template, name and id columns in csv file")
 		return
 	}
