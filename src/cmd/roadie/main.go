@@ -6,10 +6,12 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 )
 
 type Flags struct {
-	Version int
+	Version    int
+	TimeOutput bool
 }
 
 var flags Flags
@@ -19,6 +21,9 @@ const versionFile string = ".roadie_version"
 func init() {
 	flag.IntVar(&flags.Version, "version", -1, "version of the output file (for use with build pipelines")
 	flag.IntVar(&flags.Version, "v", -1, "shorthand for -version")
+	flag.BoolVar(&flags.TimeOutput, "time", false, "produce basic timing statistics")
+	flag.BoolVar(&flags.TimeOutput, "t", false, "shorthand for -time")
+
 }
 
 func main() {
@@ -26,8 +31,14 @@ func main() {
 
 	checkVersion()
 
+	start := time.Now()
+
 	for _, a := range flag.Args() {
 		processSetFile(a)
+	}
+
+	if flags.TimeOutput {
+		log.Printf("Time taken: %dms", time.Since(start).Milliseconds())
 	}
 }
 

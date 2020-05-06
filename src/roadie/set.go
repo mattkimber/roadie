@@ -70,7 +70,7 @@ func writeToFile(filename string, writeFunc func(w io.Writer) error) (err error)
 		return
 	}
 
-	w := bufio.NewWriter(f)
+	w := bufio.NewWriterSize(f, 1024*64)
 	if err = writeFunc(w); err != nil {
 		w.Flush()
 		f.Close()
