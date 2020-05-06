@@ -119,6 +119,9 @@ table will be passed as a Go map, allowing for an almost unlimited variety
 of sprite handling options (at the cost of needing to write potentially
 complex templates).
 
+There are some additional built-in functions on top of the standard Go
+template functions to make life easier for some common `.nml` scenarios.
+
 `sprites` has the following elements:
 
 * `table`: the path to the tracking table (defaults to `table.csv`)
@@ -267,6 +270,48 @@ The above example will produce the following output:
 /* Example of a custom template used to output a string */
 disable_item(FEAT_ROADVEHS, 0, 254);
 ```
+
+## Built-in functions
+
+The following built-in template functions are offered:
+
+* `altsprites`
+
+These are described below.
+
+### altsprites
+
+Example:
+
+```text
+{{ altsprites "bus" "template_rv" 2 }}
+```
+
+This is a convention-based function for producing alternative sprites
+for 32bpp and extra zoom levels. It uses the standard GoRender conventions
+on directory naming and file suffixes.
+
+The parameters are, in order:
+
+* Name of sprite
+* Name of template to reference (will be suffixed with scale identifier)
+* Maximum zoom level (only 1, 2 and 4 are meaningful)
+
+The example above will produce the following output:
+
+```text
+spriteset (spriteset_bus, "1x/bus_8bpp.png" )
+{ template_rv_1x() }
+
+alternative_sprites(spriteset_bus, ZOOM_LEVEL_NORMAL, BIT_DEPTH_32BPP, "1x/bus_32bpp.png", "1x/bus_mask.png")
+{ template_rv_1x() }
+
+alternative_sprites(spriteset_bus, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "2x/bus_8bpp.png")
+{ template_rv_2x() }
+
+alternative_sprites(spriteset_bus, ZOOM_LEVEL_IN_2X, BIT_DEPTH_32BPP, "2x/bus_32bpp.png", "2x/bus_mask.png")
+{ template_rv_2x() }
+``` 
 
 ## Language files
 

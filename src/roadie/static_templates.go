@@ -3,6 +3,7 @@ package roadie
 import (
 	"assets"
 	"io"
+	"templatefunction"
 )
 
 type StaticTemplate struct {
@@ -23,7 +24,7 @@ func (s *StaticTemplates) Write(writer io.Writer) (err error) {
 }
 
 func (s *StaticTemplate) Write(writer io.Writer) (err error) {
-	t, err := assets.GetExternalTemplate(s.Template, s.Template)
+	t, err := assets.GetExternalTemplate(s.Template, s.Template, templatefunction.Map())
 
 	if err != nil {
 		return

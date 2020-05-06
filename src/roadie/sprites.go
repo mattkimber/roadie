@@ -9,6 +9,7 @@ import (
 	"log"
 	"os"
 	"strings"
+	"templatefunction"
 	"text/template"
 )
 
@@ -79,10 +80,11 @@ func processDataLine(w io.Writer, dataLine []string, fields []string, templates 
 
 func ensureTemplate(templates TemplateMap, templateName string, filename string) error {
 	if _, ok := templates[templateName]; !ok {
-		tpl, err := assets.GetExternalTemplate(templateName, filename)
+		tpl, err := assets.GetExternalTemplate(templateName, filename, templatefunction.Map())
 		if err != nil {
 			return err
 		}
+
 		templates[templateName] = tpl
 	}
 	return nil

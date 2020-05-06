@@ -24,7 +24,7 @@ func GetInternalTemplate(name string, data []byte) (t *template.Template, err er
 	return template.New(name).Parse(string(tdata))
 }
 
-func GetExternalTemplate(name string, filename string) (t *template.Template, err error) {
+func GetExternalTemplate(name string, filename string, funcMap template.FuncMap) (t *template.Template, err error) {
 	f, err := os.Open(filename)
 	if err != nil {
 		err = fmt.Errorf("could not open %s: %v", filename, err)
@@ -37,7 +37,9 @@ func GetExternalTemplate(name string, filename string) (t *template.Template, er
 		return
 	}
 
-	return template.New(name).Parse(string(data))
+	t = template.New(name)
+	t.Funcs(funcMap)
+	return t.Parse(string(data))
 }
 
 func GetInput(filename string) (output string, err error) {
