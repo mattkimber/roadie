@@ -128,6 +128,7 @@ template functions to make life easier for some common `.nml` scenarios.
 * `template_directory`: the root path in which templates can be found (defaults to the current path)
 * `additional_text_field`: if specified, a field in the .csv which contains additional text (e.g. historical details or usage hints) for the sprite
 * `additional_text_format`: if specified, a format string for additional text - useful for format elements which are consistent across all sprites. If this does not contain a `%s` string location character, one will be appended.
+* `nestable_templates`: if specified, templates that should be available for nesting. This allows you to set up templates which can be repeatedly called from other templates. (See the example `set.json` and attached template files for more details on how this works in practice)
 
 A tracking table must have the following **mandatory** fields:
 

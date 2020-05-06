@@ -21,6 +21,7 @@ type Sprites struct {
 	EncounteredStrings   []LanguageString
 	AdditionalTextField  string
 	AdditionalTextFormat string
+	NestableTemplates    []string
 }
 
 func (s *Sprites) Write(w io.Writer) (err error) {
@@ -68,7 +69,7 @@ func processDataLine(w io.Writer, dataLine []string, fields []string, templates 
 	templateName := templateData["template"]
 	templateFile := s.TemplateDirectory + "/" + templateName + ".tmpl"
 
-	if err = ensureTemplate(templates, templateName, templateFile); err != nil {
+	if err = s.ensureTemplate(templates, templateName, templateFile); err != nil {
 		return
 	}
 
@@ -78,9 +79,10 @@ func processDataLine(w io.Writer, dataLine []string, fields []string, templates 
 	return
 }
 
-func ensureTemplate(templates TemplateMap, templateName string, filename string) error {
+func (s *Sprites) ensureTemplate(templates TemplateMap, templateName string, filename string) error {
 	if _, ok := templates[templateName]; !ok {
-		tpl, err := assets.GetExternalTemplate(templateName, filename, templatefunction.Map())
+		filenames := append([]string{filename}, s.NestableTemplates...)
+		tpl, err := assets.GetExternalTemplate(filenames, templatefunction.Map())
 		if err != nil {
 			return err
 		}

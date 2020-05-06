@@ -24,7 +24,7 @@ func (s *StaticTemplates) Write(writer io.Writer) (err error) {
 }
 
 func (s *StaticTemplate) Write(writer io.Writer) (err error) {
-	t, err := assets.GetExternalTemplate(s.Template, s.Template, templatefunction.Map())
+	t, err := assets.GetExternalTemplate([]string{s.Template}, templatefunction.Map())
 
 	if err != nil {
 		return

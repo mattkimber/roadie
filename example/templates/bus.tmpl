@@ -1,33 +1,7 @@
 spriteset (spriteset_{{.id}}, "example/img/{{.id}}.png" ) { example_template() }
 
 item(FEAT_ROADVEHS, {{.id}}, {{.numeric_id}}) {
-    property {
-        name:                           {{.name_string}};
-        climates_available:             bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
-        introduction_date:              date({{.intro_year}},01,01);
-        model_life:                     -1;
-        vehicle_life:                   {{.vehicle_life}};
-        reliability_decay:              20;
-        refittable_cargo_classes:       bitmask(CC_PASSENGERS);
-        non_refittable_cargo_classes:   bitmask(CC_BULK, CC_LIQUID, CC_PIECE_GOODS, CC_EXPRESS, CC_REFRIGERATED, CC_ARMOURED, CC_MAIL);
-        default_cargo_type:             PASS;
-        loading_speed:                  5;
-        cost_factor:                    {{.cost}};
-        running_cost_factor:            {{.running_cost}};
-
-        sprite_id:                      SPRITE_ID_NEW_ROADVEH;
-        speed:                          {{.speed}} mph;
-        misc_flags:                     bitmask(ROADVEH_FLAG_2CC);
-        refit_cost:                     0;
-
-        running_cost_base:              RUNNING_COST_ROADVEH;
-        power:                          {{.power}} hp;
-        weight:                         {{.weight}} ton;
-
-        cargo_capacity:                 {{.capacity}};
-        sound_effect:                   SOUND_TRUCK_START_2;
-
-    }
+    {{ template "vehicle_props" . }}
 
     graphics {
         default: spriteset_{{.id}};
