@@ -22,6 +22,7 @@ type Sprites struct {
 	AdditionalTextField  string
 	AdditionalTextFormat string
 	NestableTemplates    []string
+	Globals              map[string]string
 }
 
 func (s *Sprites) Write(w io.Writer) (err error) {
@@ -46,19 +47,21 @@ func (s *Sprites) Write(w io.Writer) (err error) {
 }
 
 func processDataLine(w io.Writer, dataLine []string, fields []string, templates TemplateMap, s *Sprites) (err error) {
-	templateData := make(map[string]string)
+	templateData := make(map[string]interface{})
 
 	for i, f := range dataLine {
 		templateData[fields[i]] = f
 	}
 
-	str := LanguageString{Name: "STR_NAME_" + strings.ToUpper(templateData["id"]), Value: templateData["name"]}
+	templateData["globals"] = s.Globals
+
+	str := LanguageString{Name: "STR_NAME_" + strings.ToUpper(templateData["id"].(string)), Value: templateData["name"].(string)}
 	s.EncounteredStrings = append(s.EncounteredStrings, str)
 
 	templateData["name_string"] = "string(" + str.Name + ")"
-	if len(s.AdditionalTextField) > 0 && len(templateData[s.AdditionalTextField]) > 0 {
+	if len(s.AdditionalTextField) > 0 && len(templateData[s.AdditionalTextField].(string)) > 0 {
 		additional := LanguageString{
-			Name:  "STR_NAME_" + strings.ToUpper(s.AdditionalTextField) + "_" + strings.ToUpper(templateData["id"]),
+			Name:  "STR_NAME_" + strings.ToUpper(s.AdditionalTextField) + "_" + strings.ToUpper(templateData["id"].(string)),
 			Value: fmt.Sprintf(s.AdditionalTextFormat, templateData[s.AdditionalTextField]),
 		}
 		s.EncounteredStrings = append(s.EncounteredStrings, additional)
@@ -66,7 +69,7 @@ func processDataLine(w io.Writer, dataLine []string, fields []string, templates 
 		templateData["additional_text_string"] = "string(" + additional.Name + ")"
 	}
 
-	templateName := templateData["template"]
+	templateName := templateData["template"].(string)
 	templateFile := s.TemplateDirectory + "/" + templateName + ".tmpl"
 
 	if err = s.ensureTemplate(templates, templateName, templateFile); err != nil {

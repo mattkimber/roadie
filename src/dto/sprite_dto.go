@@ -6,11 +6,12 @@ import (
 )
 
 type SpritesDTO struct {
-	Table                string   `json:"table"`
-	TemplateDirectory    string   `json:"template_directory"`
-	AdditionalTextField  string   `json:"additional_text_field"`
-	AdditionalTextFormat string   `json:"additional_text_format"`
-	NestableTemplates    []string `json:"nestable_templates"`
+	Table                string            `json:"table"`
+	TemplateDirectory    string            `json:"template_directory"`
+	AdditionalTextField  string            `json:"additional_text_field"`
+	AdditionalTextFormat string            `json:"additional_text_format"`
+	NestableTemplates    []string          `json:"nestable_templates"`
+	Globals              map[string]string `json:"globals"`
 }
 
 func (d *SpritesDTO) GetSprites() (c roadie.Sprites) {
@@ -20,6 +21,7 @@ func (d *SpritesDTO) GetSprites() (c roadie.Sprites) {
 		c.Table = "table.csv"
 	}
 	c.TemplateDirectory = d.TemplateDirectory
+	c.Globals = d.Globals
 
 	for _, t := range d.NestableTemplates {
 		c.NestableTemplates = append(c.NestableTemplates, d.TemplateDirectory+"/"+t+".tmpl")

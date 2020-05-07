@@ -2,6 +2,7 @@ template a {
   id: item_a
   name: Item A
   string: string(STR_NAME_ITEM_A)
+  global_var: bar
 }
 
 template b {

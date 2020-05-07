@@ -33,6 +33,7 @@ And the following optional elements:
 * `cargotable`: cargo tables
 * `sprite_templates`: an array of sprite size templates 
 * `static_templates`: templates to process that are not related to sprites
+* `fixed_strings`: fixed strings to put in the language file
 
 Each element is described in detail below.
 
@@ -105,7 +106,10 @@ Example:
   "table": "example/table.csv",
   "template_directory": "example/templates",
   "additional_text_field": "text",
-  "additional_text_format": "Usage: %s"
+  "additional_text_format": "Usage: %s",
+  "globals": {
+    "example": "global variable"
+  }
 }
 ```
 
@@ -129,6 +133,7 @@ template functions to make life easier for some common `.nml` scenarios.
 * `additional_text_field`: if specified, a field in the .csv which contains additional text (e.g. historical details or usage hints) for the sprite
 * `additional_text_format`: if specified, a format string for additional text - useful for format elements which are consistent across all sprites. If this does not contain a `%s` string location character, one will be appended.
 * `nestable_templates`: if specified, templates that should be available for nesting. This allows you to set up templates which can be repeatedly called from other templates. (See the example `set.json` and attached template files for more details on how this works in practice)
+* `globals`: if specified, a map of global variables which will be injected for each sprite. This is useful for using multiple set files with the same templates to produce different behaviour.
 
 A tracking table must have the following **mandatory** fields:
 
@@ -270,6 +275,29 @@ The above example will produce the following output:
 ```text
 /* Example of a custom template used to output a string */
 disable_item(FEAT_ROADVEHS, 0, 254);
+```
+
+### fixed_strings
+
+Example:
+
+```json
+"fixed_strings": {
+    "str_cargo_livery_regular": " (Regular Livery)",
+    "str_cargo_livery_alt": " (Alternate Livery)"
+}
+```
+
+Fixed strings will output the configured strings to the language file,
+which may be useful for switches or other NML elements that wish to
+return arbitrary text not associated with a sprite.
+
+The above example will produce the following output in the **language**
+file:
+
+```text
+STR_CARGO_LIVERY_REGULAR : (Regular Livery)
+STR_CARGO_LIVERY_ALT : (Alternate Livery)
 ```
 
 ## Built-in functions
