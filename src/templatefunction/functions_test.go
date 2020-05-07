@@ -2,6 +2,7 @@ package templatefunction
 
 import (
 	"assets"
+	"reflect"
 	"strings"
 	"testing"
 )
@@ -63,8 +64,27 @@ func TestParseInt(t *testing.T) {
 	}
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			if got := ParseInt(tc.input); got != tc.expected {
-				t.Errorf("ParseInt() = %v, expected %v", got, tc.expected)
+			if result := ParseInt(tc.input); result != tc.expected {
+				t.Errorf("ParseInt() = %v, expected %v", result, tc.expected)
+			}
+		})
+	}
+}
+
+func TestSlice(t *testing.T) {
+	testCases := []struct {
+		name     string
+		input    string
+		expected []string
+	}{
+		{"valid", "foo,bar,quux", []string{"foo", "bar", "quux"}},
+		{"single element", "foo", []string{"foo"}},
+		{"empty string", "", []string{}},
+	}
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			if result := Slice(tc.input); !reflect.DeepEqual(result, tc.expected) && len(tc.expected) > 0 && len(result) > 0 {
+				t.Errorf("Slice() = %v, expected %v", result, tc.expected)
 			}
 		})
 	}

@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"fmt"
 	"strconv"
+	"strings"
 	"text/template"
 )
 
@@ -40,10 +41,15 @@ func ParseInt(input string) int {
 	}
 }
 
+func Slice(input string) []string {
+	return strings.Split(input, ",")
+}
+
 func Map() template.FuncMap {
 	return template.FuncMap{
 		"altsprites": AlternativeSprites,
 		"concat":     Concat,
 		"parseint":   ParseInt,
+		"slice":      Slice,
 	}
 }

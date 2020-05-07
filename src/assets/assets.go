@@ -31,8 +31,6 @@ var _Sprite_templatesTMPL = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x02\xff\x64
 // it is not found
 func Asset(base, path string) ([]byte, string, string, error) {
 	switch path {
-	case "/sprite_templates.tmpl":
-		return _Sprite_templatesTMPL, "68d6a979b6ffc0e6457f7fdc496d09a3", "", nil
 	case "/alternative_sprites.tmpl":
 		return _Alternative_spritesTMPL, "20ff527d21375c1d4d6e50c951b9b6c5", "", nil
 	case "/bool_param.tmpl":
@@ -43,24 +41,11 @@ func Asset(base, path string) ([]byte, string, string, error) {
 		return _GrfTMPL, "b17f968385a2a5d495ad0e75a818213b", "", nil
 	case "/int_param.tmpl":
 		return _Int_paramTMPL, "161f589e580c146749a7f0d8f64a8e04", "", nil
+	case "/sprite_templates.tmpl":
+		return _Sprite_templatesTMPL, "68d6a979b6ffc0e6457f7fdc496d09a3", "", nil
 	default:
 		return nil, "", "", ErrAssetFileNotFound
 	}
-}
-
-// GetAlternative_spritesTMPL gets the file /alternative_sprites.tmpl from the stored data and returns the data.
-func GetAlternative_spritesTMPL() []byte {
-	return _Alternative_spritesTMPL
-}
-
-// GetBool_paramTMPL gets the file /bool_param.tmpl from the stored data and returns the data.
-func GetBool_paramTMPL() []byte {
-	return _Bool_paramTMPL
-}
-
-// GetCargotableTMPL gets the file /cargotable.tmpl from the stored data and returns the data.
-func GetCargotableTMPL() []byte {
-	return _CargotableTMPL
 }
 
 // GetGrfTMPL gets the file /grf.tmpl from the stored data and returns the data.
@@ -76,4 +61,19 @@ func GetInt_paramTMPL() []byte {
 // GetSprite_templatesTMPL gets the file /sprite_templates.tmpl from the stored data and returns the data.
 func GetSprite_templatesTMPL() []byte {
 	return _Sprite_templatesTMPL
+}
+
+// GetAlternative_spritesTMPL gets the file /alternative_sprites.tmpl from the stored data and returns the data.
+func GetAlternative_spritesTMPL() []byte {
+	return _Alternative_spritesTMPL
+}
+
+// GetBool_paramTMPL gets the file /bool_param.tmpl from the stored data and returns the data.
+func GetBool_paramTMPL() []byte {
+	return _Bool_paramTMPL
+}
+
+// GetCargotableTMPL gets the file /cargotable.tmpl from the stored data and returns the data.
+func GetCargotableTMPL() []byte {
+	return _CargotableTMPL
 }

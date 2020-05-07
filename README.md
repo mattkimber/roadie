@@ -279,6 +279,7 @@ The following built-in template functions are offered:
 * `altsprites`
 * `concat`
 * `parseint`
+* `slice`
 
 These are described below.
 
@@ -338,6 +339,16 @@ Example:
 This is a simple function to parse a value from the map as an integer
 for use with comparison functions
 
+### slice
+
+Example:
+
+```text
+{{ $cargotypes := slice "goods,coal" }}
+```
+
+This function generates an iterable slice of values from a
+comma-separated string.
 
 ## Language files
 
