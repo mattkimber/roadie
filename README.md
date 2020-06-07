@@ -304,7 +304,7 @@ STR_CARGO_LIVERY_ALT : (Alternate Livery)
 
 The following built-in template functions are offered:
 
-* `altsprites`
+* `altsprites` / `altsprites8`
 * `concat`
 * `parseint`
 * `slice`
@@ -344,6 +344,9 @@ alternative_sprites(spriteset_bus, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "2x/bus_8bp
 alternative_sprites(spriteset_bus, ZOOM_LEVEL_IN_2X, BIT_DEPTH_32BPP, "2x/bus_32bpp.png", "2x/bus_mask.png")
 { template_rv_2x() }
 ``` 
+
+If you do not want 32bpp sprites, you can use the equivalent `altsprites8` which only produces the 8bpp
+variants.
 
 ### concat
 

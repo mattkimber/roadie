@@ -1,0 +1,10 @@
+spriteset (spriteset_my_sprite, "1x/my_sprite_8bpp.png" )
+{ my_template_1x() }
+
+alternative_sprites(spriteset_my_sprite, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "2x/my_sprite_8bpp.png")
+{ my_template_2x() }
+
+alternative_sprites(spriteset_my_sprite, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "4x/my_sprite_8bpp.png")
+{ my_template_4x() }
+
+

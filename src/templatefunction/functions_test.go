@@ -11,13 +11,15 @@ func TestAlternativeSprites(t *testing.T) {
 	testCases := []struct {
 		name             string
 		sprite, template string
+		bpp              int
 		expectedFile     string
 	}{
-		{"simple case", "my_sprite", "my_template", "testdata/output/alternative_sprites.nml"},
+		{"32bpp", "my_sprite", "my_template", 32, "testdata/output/alternative_sprites.nml"},
+		{"8bpp", "my_sprite", "my_template", 8, "testdata/output/alternative_sprites_8bpp.nml"},
 	}
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			testExpectedOutput(tc.expectedFile, AlternativeSprites(tc.sprite, tc.template, 4), t)
+			testExpectedOutput(tc.expectedFile, AlternativeSprites(tc.sprite, tc.template, 4, tc.bpp), t)
 		})
 	}
 }
