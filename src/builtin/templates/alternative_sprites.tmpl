@@ -1,19 +1,19 @@
-spriteset (spriteset_{{.Sprite}}, "1x/{{.Sprite}}_8bpp.png" )
+spriteset (spriteset_{{.SpriteName}}, "1x/{{.Sprite}}_8bpp.png" )
 { {{.Template}}_1x() }
 
-{{if ge .Bpp 32}}alternative_sprites(spriteset_{{.Sprite}}, ZOOM_LEVEL_NORMAL, BIT_DEPTH_32BPP, "1x/{{.Sprite}}_32bpp.png", "1x/{{.Sprite}}_mask.png")
+{{if ge .Bpp 32}}alternative_sprites(spriteset_{{.SpriteName}}, ZOOM_LEVEL_NORMAL, BIT_DEPTH_32BPP, "1x/{{.Sprite}}_32bpp.png", "1x/{{.Sprite}}_mask.png")
 { {{.Template}}_1x() }
 
 {{end -}}
-{{if ge .Zoom 2}}alternative_sprites(spriteset_{{.Sprite}}, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "2x/{{.Sprite}}_8bpp.png")
+{{if ge .Zoom 2}}alternative_sprites(spriteset_{{.SpriteName}}, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "2x/{{.Sprite}}_8bpp.png")
 { {{.Template}}_2x() }
 
-{{if ge .Bpp 32}}alternative_sprites(spriteset_{{.Sprite}}, ZOOM_LEVEL_IN_2X, BIT_DEPTH_32BPP, "2x/{{.Sprite}}_32bpp.png", "2x/{{.Sprite}}_mask.png")
+{{if ge .Bpp 32}}alternative_sprites(spriteset_{{.SpriteName}}, ZOOM_LEVEL_IN_2X, BIT_DEPTH_32BPP, "2x/{{.Sprite}}_32bpp.png", "2x/{{.Sprite}}_mask.png")
 { {{.Template}}_2x() }
 
 {{end -}}
-{{if ge .Zoom 4}}alternative_sprites(spriteset_{{.Sprite}}, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "4x/{{.Sprite}}_8bpp.png")
+{{if ge .Zoom 4}}alternative_sprites(spriteset_{{.SpriteName}}, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "4x/{{.Sprite}}_8bpp.png")
 { {{.Template}}_4x() }
 
-{{if ge .Bpp 32}}alternative_sprites(spriteset_{{.Sprite}}, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "4x/{{.Sprite}}_32bpp.png", "4x/{{.Sprite}}_mask.png")
+{{if ge .Bpp 32}}alternative_sprites(spriteset_{{.SpriteName}}, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "4x/{{.Sprite}}_32bpp.png", "4x/{{.Sprite}}_mask.png")
 { {{.Template}}_4x() }{{end}}{{end}}{{end}}
