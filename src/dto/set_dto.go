@@ -9,12 +9,13 @@ import (
 )
 
 type SetDTO struct {
-	GrfDTO                 GrfDTO                       `json:"grf"`
-	CargoTableDTO          CargoTableDTO                `json:"cargo_table"`
-	TemplatesCollectionDTO SpriteTemplatesCollectionDTO `json:"sprite_templates"`
-	SpritesDTO             SpritesDTO                   `json:"sprites"`
-	StaticTemplatesDTO     StaticTemplatesDTO           `json:"static_templates"`
-	FixedStringsDTO        FixedStringsDTO              `json:"fixed_strings"`
+	GrfDTO                        GrfDTO                        `json:"grf"`
+	CargoTableDTO                 CargoTableDTO                 `json:"cargo_table"`
+	TemplatesCollectionDTO        SpriteTemplatesCollectionDTO  `json:"sprite_templates"`
+	DynamicTemplatesCollectionDTO DynamicTemplatesCollectionDTO `json:"dynamic_templates"`
+	SpritesDTO                    SpritesDTO                    `json:"sprites"`
+	StaticTemplatesDTO            StaticTemplatesDTO            `json:"static_templates"`
+	FixedStringsDTO               FixedStringsDTO               `json:"fixed_strings"`
 }
 
 func (d *SetDTO) GetSet(version int) (s roadie.Set) {
@@ -22,6 +23,7 @@ func (d *SetDTO) GetSet(version int) (s roadie.Set) {
 	s.Grf = d.GrfDTO.GetGrf(version)
 	s.CargoTable = d.CargoTableDTO.GetCargoTable()
 	s.Templates = d.TemplatesCollectionDTO.GetSpriteTemplateList()
+	s.Templates = append(s.Templates, d.DynamicTemplatesCollectionDTO.GetSpriteTemplateList()...)
 	s.Sprites = d.SpritesDTO.GetSprites()
 	s.StaticTemplates = d.StaticTemplatesDTO.GetStaticTemplates()
 	s.FixedStrings = d.FixedStringsDTO.GetFixedStrings()

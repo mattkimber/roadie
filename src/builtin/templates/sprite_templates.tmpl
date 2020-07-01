@@ -1,4 +1,4 @@
-{{range $element := .Templates}}template {{$element.Name}}() {{"{"}}{{range $line := $element.Lines}}
+{{range $element := .}}template {{$element.Name}}() {{"{"}}{{range $line := $element.Lines}}
     [ {{$line.X}}, {{$line.Y}}, {{$line.W}}, {{$line.H}}, {{$line.OffsetX}}, {{$line.OffsetY}} ]{{end}}
 }
 

@@ -16,9 +16,7 @@ type SpriteTemplate struct {
 	Lines []TemplateLine
 }
 
-type SpriteTemplates struct {
-	Templates []SpriteTemplate
-}
+type SpriteTemplates []SpriteTemplate
 
 func (s SpriteTemplates) Write(writer io.Writer) (err error) {
 	t, err := assets.GetInternalTemplate("spriteTemplates", assets.GetSprite_templatesTMPL())
