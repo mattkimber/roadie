@@ -60,6 +60,10 @@ func ParseInt(input string) int {
 	}
 }
 
+func ToUpper(input string) string {
+	return strings.ToUpper(input)
+}
+
 func Slice(input string) []string {
 	return strings.Split(input, ",")
 }
@@ -73,5 +77,6 @@ func Map() template.FuncMap {
 		"concat":       Concat,
 		"parseint":     ParseInt,
 		"slice":        Slice,
+		"toupper":      ToUpper,
 	}
 }

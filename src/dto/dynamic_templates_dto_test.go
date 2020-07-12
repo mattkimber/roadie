@@ -36,8 +36,8 @@ func TestDynamicTemplatesDTO_GetSpriteTemplates(t *testing.T) {
 			},
 			Overlays: []TemplateOverlayDTO{
 				{
-					Names:   []string { "test_with_offset" },
-					Offsets: [][]int{{0,0},{40,20},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0}},
+					Names:   []string{"test_with_offset"},
+					Offsets: [][]int{{0, 0}, {40, 20}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}},
 					Shift:   -2,
 				},
 			},
