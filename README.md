@@ -381,6 +381,16 @@ Example:
 This function generates an iterable slice of values from a
 comma-separated string.
 
+### toupper
+
+Example:
+
+```text
+{{ toupper "goods" }}
+```
+
+This function returns an uppercase version of the input string.
+
 ## Language files
 
 Roadie will output its language file in the `lang` directory, as expected
