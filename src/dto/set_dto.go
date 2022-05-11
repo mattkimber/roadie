@@ -3,9 +3,9 @@ package dto
 import (
 	"bufio"
 	"encoding/json"
+	"github.com/mattkimber/roadie/src/roadie"
 	"io/ioutil"
 	"os"
-	"roadie"
 )
 
 type SetDTO struct {

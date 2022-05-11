@@ -1,9 +1,9 @@
 package templatefunction
 
 import (
-	"assets"
 	"bytes"
 	"fmt"
+	"github.com/mattkimber/roadie/src/assets"
 	"strconv"
 	"strings"
 	"text/template"

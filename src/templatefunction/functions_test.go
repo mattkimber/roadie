@@ -1,7 +1,7 @@
 package templatefunction
 
 import (
-	"assets"
+	"github.com/mattkimber/roadie/src/assets"
 	"reflect"
 	"strings"
 	"testing"

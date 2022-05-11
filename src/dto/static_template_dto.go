@@ -1,7 +1,7 @@
 package dto
 
 import (
-	"roadie"
+	"github.com/mattkimber/roadie/src/roadie"
 )
 
 type StaticTemplateDTO struct {

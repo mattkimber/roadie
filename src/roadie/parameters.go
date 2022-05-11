@@ -1,8 +1,8 @@
 package roadie
 
 import (
-	"assets"
 	"fmt"
+	"github.com/mattkimber/roadie/src/assets"
 	"io"
 	"text/template"
 )

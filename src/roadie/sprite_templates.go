@@ -1,7 +1,7 @@
 package roadie
 
 import (
-	"assets"
+	"github.com/mattkimber/roadie/src/assets"
 	"io"
 )
 

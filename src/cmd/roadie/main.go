@@ -1,9 +1,9 @@
 package main
 
 import (
-	"dto"
 	"flag"
 	"fmt"
+	"github.com/mattkimber/roadie/src/dto"
 	"log"
 	"os"
 	"time"

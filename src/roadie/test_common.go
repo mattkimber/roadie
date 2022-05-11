@@ -1,8 +1,8 @@
 package roadie
 
 import (
-	"assets"
 	"bytes"
+	"github.com/mattkimber/roadie/src/assets"
 	"strings"
 	"testing"
 )

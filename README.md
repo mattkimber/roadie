@@ -15,6 +15,16 @@ You will need the following prerequisites to create an NML file:
 The files don't have to be named exactly that, but all examples will
 use these conventions.
 
+## Building
+
+The following should work in a sane Go environment:
+
+`go build -o roadie src/cmd/roadie/main.go`
+
+Or, on Windows,
+
+`go build -o roadie.exe src/cmd/roadie/main.go`
+
 ## Usage
 
 To process the set JSON file `set.json`:

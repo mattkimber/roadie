@@ -1,9 +1,9 @@
 package roadie
 
 import (
-	"assets"
+	"github.com/mattkimber/roadie/src/assets"
+	"github.com/mattkimber/roadie/src/templatefunction"
 	"io"
-	"templatefunction"
 )
 
 type StaticTemplate struct {

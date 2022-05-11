@@ -1,8 +1,8 @@
 package dto
 
 import (
+	"github.com/mattkimber/roadie/src/roadie"
 	"math"
-	"roadie"
 )
 
 type SpriteTemplatesDTO struct {

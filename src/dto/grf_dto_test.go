@@ -1,8 +1,8 @@
 package dto
 
 import (
+	"github.com/mattkimber/roadie/src/roadie"
 	"reflect"
-	"roadie"
 	"testing"
 )
 

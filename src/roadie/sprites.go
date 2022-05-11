@@ -1,15 +1,15 @@
 package roadie
 
 import (
-	"assets"
 	"bufio"
 	"encoding/csv"
 	"fmt"
+	"github.com/mattkimber/roadie/src/assets"
+	"github.com/mattkimber/roadie/src/templatefunction"
 	"io"
 	"log"
 	"os"
 	"strings"
-	"templatefunction"
 	"text/template"
 )
 

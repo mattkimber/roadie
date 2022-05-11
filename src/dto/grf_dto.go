@@ -2,7 +2,7 @@ package dto
 
 import (
 	"fmt"
-	"roadie"
+	"github.com/mattkimber/roadie/src/roadie"
 )
 
 type GrfDTO struct {

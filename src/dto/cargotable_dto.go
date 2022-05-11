@@ -2,7 +2,7 @@ package dto
 
 import (
 	"encoding/json"
-	"roadie"
+	"github.com/mattkimber/roadie/src/roadie"
 )
 
 type CargoTableDTO struct {
