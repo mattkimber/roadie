@@ -1,1 +1,0 @@
-..\go\bin\go-embed.exe -input src/builtin/templates -output src/assets/assets.go

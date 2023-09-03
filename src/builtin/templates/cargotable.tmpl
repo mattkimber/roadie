@@ -1,2 +1,2 @@
-cargotable { {{range $element := .Cargo}}{{$element}}, {{end}}}
+cargotable { {{range $idx, $element := .Cargo}}{{if $idx}}, {{end}}{{$element}}{{end}}}
 
