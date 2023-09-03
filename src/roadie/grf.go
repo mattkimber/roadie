@@ -16,7 +16,7 @@ type Grf struct {
 }
 
 func (g Grf) Write(writer io.Writer) (err error) {
-	t, err := assets.GetInternalTemplate("grf", assets.GetGrfTMPL())
+	t, err := assets.GetInternalTemplate("grf", "grf.tmpl")
 
 	if err != nil {
 		return

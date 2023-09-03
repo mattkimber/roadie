@@ -1,3 +1,3 @@
-go 1.14
+go 1.21
 
 module github.com/mattkimber/roadie

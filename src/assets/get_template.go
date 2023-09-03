@@ -2,26 +2,20 @@ package assets
 
 import (
 	"bufio"
-	"bytes"
-	"compress/gzip"
-	"io/ioutil"
+	"github.com/mattkimber/roadie/src/builtin"
+	"io"
 	"os"
 	"path"
 	"text/template"
 )
 
-func GetInternalTemplate(name string, data []byte) (t *template.Template, err error) {
-	rd, err := gzip.NewReader(bytes.NewReader(data))
+func GetInternalTemplate(name string, filename string) (t *template.Template, err error) {
+	data, err := builtin.BuiltIns.ReadFile("templates/" + filename)
 	if err != nil {
 		return
 	}
 
-	tdata, err := ioutil.ReadAll(rd)
-	if err != nil {
-		return
-	}
-
-	return template.New(name).Parse(string(tdata))
+	return template.New(name).Parse(string(data))
 }
 
 func GetExternalTemplate(filenames []string, funcMap template.FuncMap) (t *template.Template, err error) {
@@ -38,7 +32,7 @@ func GetInput(filename string) (output string, err error) {
 		return
 	}
 
-	data, err := ioutil.ReadAll(bufio.NewReader(f))
+	data, err := io.ReadAll(bufio.NewReader(f))
 	if err != nil {
 		return
 	}

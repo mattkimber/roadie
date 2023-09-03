@@ -439,3 +439,14 @@ version by creating a `.roadie_version` file (if it does not already
 exist) and incrementing it each time Roadie runs. If you are converting
 an existing set to Roadie it is possible to edit this file manually
 to set the starting point.
+
+## Sorting
+
+If the columns `sort_order` and `sort_feature` are present in the
+input CSV, Roadie will generate NML `sort` blocks using these.
+
+The `sort_feature` needs to be a valid NML feature for the type
+of sprite produced, e.g. `FEAT_TRAINS`
+
+A `sort_order` of -1 or an empty `sort_feature` will exclude
+that row from the sort block.

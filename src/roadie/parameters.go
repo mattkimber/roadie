@@ -31,9 +31,9 @@ func (p *Parameter) Write(writer io.Writer) (err error) {
 	}
 
 	if p.Type == "int" {
-		t, err = assets.GetInternalTemplate("intParam", assets.GetInt_paramTMPL())
+		t, err = assets.GetInternalTemplate("intParam", "int_param.tmpl")
 	} else {
-		t, err = assets.GetInternalTemplate("boolParam", assets.GetBool_paramTMPL())
+		t, err = assets.GetInternalTemplate("boolParam", "bool_param.tmpl")
 	}
 
 	if err != nil {

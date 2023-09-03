@@ -19,7 +19,7 @@ type SpriteTemplate struct {
 type SpriteTemplates []SpriteTemplate
 
 func (s SpriteTemplates) Write(writer io.Writer) (err error) {
-	t, err := assets.GetInternalTemplate("spriteTemplates", assets.GetSprite_templatesTMPL())
+	t, err := assets.GetInternalTemplate("spriteTemplates", "sprite_templates.tmpl")
 
 	if err != nil {
 		return

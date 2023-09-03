@@ -1,0 +1,3 @@
+{{range $k, $v := . }}
+sort({{$k}}, [{{range $idx, $elem := $v}}{{if $idx}}, {{end}}{{$elem.ItemName}}{{end}}]);
+{{- end }}

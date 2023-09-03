@@ -1,0 +1,5 @@
+name,id,template,sort_order,sort_feature
+Item A,item_a,a,3,FEAT_TRAINS
+Item B,item_b,b,1,FEAT_TRAINS
+Item C,item_c,b,-1,
+Item D,item_d,b,2,FEAT_ROADVEHS

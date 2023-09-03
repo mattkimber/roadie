@@ -35,7 +35,7 @@ func AlternativeSprites32N(sprite, template string, zoom int, suffix string) str
 }
 
 func AlternativeSprites(sprite, template string, zoom int, bpp int, suffix string) string {
-	t, err := assets.GetInternalTemplate("intParam", assets.GetAlternative_spritesTMPL())
+	t, err := assets.GetInternalTemplate("intParam", "alternative_sprites.tmpl")
 	if err != nil {
 		return fmt.Sprintf("%v", err)
 	}

@@ -1,0 +1,19 @@
+template a {
+  id: item_a
+  name: Item A
+  string: string(STR_NAME_ITEM_A)
+  global_var: bar
+}
+
+template b {
+    name: Item B
+}
+template b {
+    name: Item C
+}
+template b {
+    name: Item D
+}
+
+sort(FEAT_ROADVEHS, [item_d]);
+sort(FEAT_TRAINS, [item_b, item_a]);
