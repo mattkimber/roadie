@@ -68,6 +68,15 @@ func Slice(input string) []string {
 	return strings.Split(input, ",")
 }
 
+func Dict(values ...interface{}) map[string]interface{} {
+	m := make(map[string]interface{})
+	for i := 0; i < len(values); i += 2 {
+		key := values[i].(string)
+		m[key] = values[i+1]
+	}
+	return m
+}
+
 func Map() template.FuncMap {
 	return template.FuncMap{
 		"altsprites":   AlternativeSprites32,
@@ -78,5 +87,6 @@ func Map() template.FuncMap {
 		"parseint":     ParseInt,
 		"slice":        Slice,
 		"toupper":      ToUpper,
+		"dict":         Dict,
 	}
 }
