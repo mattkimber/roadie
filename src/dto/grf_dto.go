@@ -10,6 +10,7 @@ type GrfDTO struct {
 	GrfId                int           `json:"grf_id"`
 	Name                 string        `json:"name"`
 	Description          string        `json:"description"`
+	Url                  string        `json:"url"`
 	MinCompatibleVersion int           `json:"min_compat_version"`
 	Filename             string        `json:"filename"`
 	Language             string        `json:"language"`
@@ -22,6 +23,7 @@ func (d *GrfDTO) GetGrf(version int) (g roadie.Grf) {
 	g.Version = version
 	g.Name = d.Name
 	g.Description = d.Description
+	g.Url = d.Url;
 	g.Parameters = d.ParametersDTO.GetParameters()
 
 	if len(d.Language) > 0 {
