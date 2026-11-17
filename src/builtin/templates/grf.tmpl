@@ -2,6 +2,9 @@ grf {
   grfid:                  "{{.Identifier}}";
   name:                   string(STR_GRF_NAME);
   desc:                   string(STR_GRF_DESCRIPTION);
+  {{- if .Url}}
+  url:                    string(STR_GRF_URL);
+  {{- end}}
   version:                {{.Version}};
   min_compatible_version: {{.MinCompatibleVersion}};{{if ne .ParameterData ""}}
   {{.ParameterData}}{{end}}

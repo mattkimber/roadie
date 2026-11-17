@@ -33,6 +33,7 @@ func getStrings(s *Set) {
 	s.LanguageData.Data = make([]LanguageString, 0, 2)
 	s.LanguageData.Data = append(s.LanguageData.Data, LanguageString{Name: "STR_GRF_NAME", Value: s.Grf.Name})
 	s.LanguageData.Data = append(s.LanguageData.Data, LanguageString{Name: "STR_GRF_DESCRIPTION", Value: s.Grf.Description})
+	s.LanguageData.Data = append(s.LanguageData.Data, LanguageString{Name: "STR_GRF_URL", Value: s.Grf.Url})
 
 	s.LanguageData.Data = append(s.LanguageData.Data, s.FixedStrings...)
 

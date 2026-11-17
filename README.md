@@ -57,6 +57,7 @@ Example:
     "grf_id": 1,
     "name": "Roadie Example Vehicle Set",
     "description": "A set demonstrating the basic features of Roadie",
+    "url": "https://github.com/mattkimber/roadie",
     "min_compat_version": 1,
     "filename": "example.nml",
     "language": "english", 
@@ -70,6 +71,7 @@ The `grf` element has the following fields:
 * `grf_id`: the ID of this `.grf` file in particular, from 0-255
 * `name`: the name of the vehicle set
 * `description`: a short description of the set
+* `url`: a link to the set's webpage
 * `min_compat_version`: the earliest version of the set this instance of the set is compatible with
 * `filename`: the output NML filename to produce
 * `language`: the language in which to output string tables. Defaults to `english` if not set.

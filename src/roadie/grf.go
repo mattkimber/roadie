@@ -12,7 +12,7 @@ type Grf struct {
 	Parameters                    Parameters
 	ParameterData                 string
 	Language                      string
-	Name, Description             string
+	Name, Description, Url        string
 }
 
 func (g Grf) Write(writer io.Writer) (err error) {
